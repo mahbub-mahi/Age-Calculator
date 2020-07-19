@@ -140,6 +140,13 @@ sumbit.addEventListener("submit", function calculate_age() {
     } else {
       if (ty - by == 1) {
         text.innerHTML += " YEAR " + (ty - by) + " " + " : AGE";
+      } else if (ty - by < 0) {
+        modal.classList.add("bg-active");
+        text.innerHTML = "&#128516 Yet Born Haven't You SORRY!";
+        text.style.backgroundColor = "#a91d1d";
+        text.classList.remove("active");
+        audio.pause();
+        audio.currentTime = 0;
       } else {
         text.innerHTML += " YEARS " + (ty - by) + " " + " : AGE";
       }
