@@ -91,6 +91,13 @@ sumbit.addEventListener("submit", function calculate_age() {
     text.classList.remove("active");
     audio.pause();
     audio.currentTime = 0;
+  } else if (ty - by < 0 || tm - bm < 0 || td - bd < 0) {
+    modal.classList.add("bg-active");
+    text.innerHTML = "SORRY! You Haven't Born Yet &#128516 ";
+    text.style.backgroundColor = "#a91d1d";
+    text.classList.remove("active");
+    audio.pause();
+    audio.currentTime = 0;
   } else {
     modal.classList.add("bg-active");
     text.style.backgroundColor = "#163a38";
@@ -114,6 +121,8 @@ sumbit.addEventListener("submit", function calculate_age() {
     } else {
       if (tm - bm == 1) {
         text.innerHTML += " MONTH " + (tm - bm) + " ";
+      } else if (tm - bm == 0) {
+        text.innerHTML += " ";
       } else {
         text.innerHTML += " MONTHS " + (tm - bm) + " ";
       }
