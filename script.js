@@ -74,6 +74,13 @@ sumbit.addEventListener("submit", function calculate_age() {
     text.innerHTML = "<h3>HAPPY BIRTHDAY!!!</h3>";
     if (ty - by == 0) {
       text.innerHTML += "<p> YOU JUST BORN TODAY!!!! </p";
+    } else if (ty - by < 0) {
+      modal.classList.add("bg-active");
+      text.innerHTML = "SORRY! You Haven't Born Yet &#128516 ";
+      text.style.backgroundColor = "#a91d1d";
+      text.classList.remove("active");
+      audio.pause();
+      audio.currentTime = 0;
     } else {
       text.innerHTML +=
         "<p> TODAY YOU BECOME " +
@@ -91,7 +98,7 @@ sumbit.addEventListener("submit", function calculate_age() {
     text.classList.remove("active");
     audio.pause();
     audio.currentTime = 0;
-  } else if (ty - by < 0 || tm - bm < 0 || td - bd < 0) {
+  } else if (ty - by < 0) {
     modal.classList.add("bg-active");
     text.innerHTML = "SORRY! You Haven't Born Yet &#128516 ";
     text.style.backgroundColor = "#a91d1d";
