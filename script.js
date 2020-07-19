@@ -16,14 +16,26 @@ date.value = today.getDate();
 
 form.addEventListener("submit", function (event) */
 
+window.onload = "myFunction()";
 let sumbit = document.querySelector("form");
 let text = document.querySelector(".result");
+let modal = document.querySelector(".modal-bg");
 
 function play() {
   var audio = document.getElementById("audio");
 }
 
-sumbit.addEventListener("submit", function calculate_age(dob) {
+modal.addEventListener("click", (e) => {
+  console.log(e);
+  if (e.target.classList.contains("modal-bg")) {
+    modal.classList.remove("bg-active");
+    text.classList.remove("active");
+    audio.pause();
+    audio.currentTime = 0;
+  }
+});
+
+sumbit.addEventListener("submit", function calculate_age() {
   event.preventDefault();
   text.style.transition = "all 1s";
 
@@ -57,26 +69,30 @@ sumbit.addEventListener("submit", function calculate_age(dob) {
     t.getMonth() == birthday.getMonth() &&
     t.getDate() == birthday.getDate()
   ) {
+    modal.classList.add("bg-active");
     text.classList.add("active");
-    text.style.transition = "opacity .7s ease-out";
-    text.style.backgroundColor = "";
-    text.innerHTML =
-      "<h3>HAPPY BIRTHDAY!!!</h3> <p> TODAY YOU BECOME " +
-      "<span>" +
-      (ty - by) +
-      "</span>" +
-      " YEARS OLD </p>";
+    text.innerHTML = "<h3>HAPPY BIRTHDAY!!!</h3>";
+    if (ty - by == 0) {
+      text.innerHTML += "<p> YOU JUST BORN TODAY!!!! </p";
+    } else {
+      text.innerHTML +=
+        "<p> TODAY YOU BECOME " +
+        "<span>" +
+        (ty - by) +
+        "</span>" +
+        " YEARS OLD </p>";
+    }
     audio.play();
   } //invalid seceltion:
   else if (isNaN(ty - by) || isNaN(tm - bm) || isNaN(td - bd)) {
-    text.style.transition = "all 1.3s";
+    modal.classList.add("bg-active");
     text.innerHTML = "Invalid birthday - Please try again!";
     text.style.backgroundColor = "#a91d1d";
     text.classList.remove("active");
     audio.pause();
     audio.currentTime = 0;
   } else {
-    text.style.transition = "all 2s";
+    modal.classList.add("bg-active");
     text.style.backgroundColor = "#163a38";
     text.classList.remove("active");
     audio.pause();
